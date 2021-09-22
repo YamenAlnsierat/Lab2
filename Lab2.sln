@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geometric Library", "Geometric Library\Geometric Library.csproj", "{845E52FC-5FE7-4402-840D-43FEFE744AA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjecteEditor", "ObjecteEditor\ObjecteEditor.csproj", "{FD3D783F-39C9-4E71-82C6-B8D9BB91F99F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{845E52FC-5FE7-4402-840D-43FEFE744AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845E52FC-5FE7-4402-840D-43FEFE744AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845E52FC-5FE7-4402-840D-43FEFE744AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845E52FC-5FE7-4402-840D-43FEFE744AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3D783F-39C9-4E71-82C6-B8D9BB91F99F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3D783F-39C9-4E71-82C6-B8D9BB91F99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3D783F-39C9-4E71-82C6-B8D9BB91F99F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3D783F-39C9-4E71-82C6-B8D9BB91F99F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0A690BC-A38C-442E-A95C-A5CA5440F327}
+	EndGlobalSection
+EndGlobal
