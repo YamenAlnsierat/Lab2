@@ -22,10 +22,27 @@ namespace ShapeCereator
             //Console.WriteLine(myCu.Area);
             //Console.WriteLine(myCu);
 
-            Sphere myS = new Sphere(new Vector3(3, 4, 6), 5);
-            Console.WriteLine(myS.Area);
-            Console.WriteLine(myS.Volume);
-            Console.WriteLine(myS);
+            //Sphere myS = new Sphere(new Vector3(3, 4, 6), 5);
+            //Console.WriteLine(myS.Area);
+            //Console.WriteLine(myS.Volume);
+            //Console.WriteLine(myS);
+
+            Console.WriteLine("Here is a list with 20 random Shapes with their area and the sum of it:\n\n");
+            Shape[] shapes = new Shape[20];
+            float totArea = 0;
+            for (int i = 0; i < shapes.Length; i++)
+            {
+                shapes[i]= Shape.GenerateShape();
+                totArea += shapes[i].Area;
+            }
+            for (int i = 0; i < shapes.Length; i++)
+            {
+                Console.WriteLine(shapes[i]);
+                Console.WriteLine($"Area: {shapes[i].Area} cm");
+                Console.WriteLine("________________________");
+            }
+            Console.WriteLine();
+            Console.WriteLine($"Total area of all shapes together is: {totArea} cm");
         }
     }
 }

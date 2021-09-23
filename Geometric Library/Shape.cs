@@ -4,8 +4,10 @@ using System.Numerics;
 
 namespace Geometric_Library
 {
+
     public abstract class Shape
     {
+        private static float x, y, z, width, length, height, radius;
 
         public abstract Vector3 Center { get; }
         public abstract float Area { get; }
@@ -13,11 +15,37 @@ namespace Geometric_Library
 
         public static Shape GenerateShape()
         {
-            Shape[] Geometry = {};
-            Random slump = new Random();
-            return Shape.GenerateShape();
+            Random rand = new Random();
+            for (int i = 0; i < 7; i++)
+            {
+                double min = 1;
+                double max = 10;
+                double range = max - min;
+                double sample = rand.NextDouble();
+                double scaled = (sample * range) + min;
+                x = MathF.Round((float)rand.NextDouble() * 10);
+                y = MathF.Round((float)rand.NextDouble() * 10);
+                z = MathF.Round((float)rand.NextDouble() * 10);
+                width = (float)scaled;
+                length = (float)scaled;
+                height = (float)scaled;
+                radius = (float)scaled;
+            }
+
+            Shape[] shapes = new Shape[6];
+            shapes[0] = new Circle(new Vector2(x, y), radius);
+            shapes[1] = new Rectangle(new Vector2(x, y), width);
+            shapes[2] = new Rectangle(new Vector2(x, y), new Vector2(length, width));
+            shapes[3] = new Cuboid(new Vector3(x, y, z), width);
+            shapes[4] = new Cuboid(new Vector3(x, y, z), new Vector3(height, length, width));
+            shapes[5] = new Sphere(new Vector3(x, y, z), radius);
+
+            Random random = new Random();
+            int number = random.Next(0, 5);
+            return shapes[number];
         }
     }
+
     public abstract class Shape2d : Shape
     {
         public Vector2 center;
@@ -66,7 +94,7 @@ namespace Geometric_Library
 
         public override string ToString()
         {
-            return $"Circle @({center.X}, {center.Y}): r = {radius}";
+            return $"Circle ({center.X}, {center.Y}): r = {radius:N4}";
         }
     }
 
@@ -130,11 +158,11 @@ namespace Geometric_Library
         {
             if (IsSquare)
             {
-                return $"Square ({center.X},{center.Y}), W = {width}, L = {length}";
+                return $"Square ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}";
             }
             else
             {
-                return $"Rectangle ({center.X},{center.Y}), W = {width}, L = {length}";
+                return $"Rectangle ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}";
             }
         }
     }
@@ -231,11 +259,11 @@ namespace Geometric_Library
         {
             if (IsCube)
             {
-                return $"Cube ({center.X},{center.Y}), W = {width}, L = {length}, H = {height}";
+                return $"Cube ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}, H = {height:N4}";
             }
             else
             {
-                return $"Cuboid ({center.X},{center.Y}), W = {width}, L = {length}, H = {height}";
+                return $"Cuboid ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}, H = {height:N4}";
             }
         }
     }
@@ -274,7 +302,7 @@ namespace Geometric_Library
 
         public override string ToString()
         {
-            return $"Sphere @({center.X}, {center.Y}, {center.Z}): r = {radius}";
+            return $"Sphere ({center.X}, {center.Y}, {center.Z}): r = {radius:N4}";
         }
     }
 }
