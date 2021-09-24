@@ -15,34 +15,46 @@ namespace Geometric_Library
 
         public static Shape GenerateShape()
         {
-            Random rand = new Random();
-            for (int i = 0; i < 7; i++)
-            {
-                double min = 1;
-                double max = 10;
-                double range = max - min;
-                double sample = rand.NextDouble();
-                double scaled = (sample * range) + min;
-                x = MathF.Round((float)rand.NextDouble() * 10);
-                y = MathF.Round((float)rand.NextDouble() * 10);
-                z = MathF.Round((float)rand.NextDouble() * 10);
-                width = (float)scaled;
-                length = (float)scaled;
-                height = (float)scaled;
-                radius = (float)scaled;
-            }
-
-            Shape[] shapes = new Shape[6];
-            shapes[0] = new Circle(new Vector2(x, y), radius);
-            shapes[1] = new Rectangle(new Vector2(x, y), width);
-            shapes[2] = new Rectangle(new Vector2(x, y), new Vector2(length, width));
-            shapes[3] = new Cuboid(new Vector3(x, y, z), width);
-            shapes[4] = new Cuboid(new Vector3(x, y, z), new Vector3(height, length, width));
-            shapes[5] = new Sphere(new Vector3(x, y, z), radius);
 
             Random random = new Random();
-            int number = random.Next(0, 5);
-            return shapes[number];
+            x = (float)random.NextDouble() * 10;
+            y = (float)random.NextDouble() * 10;
+            z = (float)random.NextDouble() * 10;
+
+
+            Random random1 = new Random();
+            int number = random1.Next(0, 6);
+            switch (number)
+            {
+                case 0:
+                    radius = (float)random.NextDouble() * 10;
+                    return new Circle(new Vector2(x, y), radius);
+
+                case 1:
+                    width = (float)random.NextDouble() * 10;
+                    return new Rectangle(new Vector2(x, y), width);
+
+                case 2:
+                    width = (float)random.NextDouble() * 10;
+                    length = (float)random.NextDouble() * 10;
+                    return new Rectangle(new Vector2(x, y), new Vector2(length, width));
+
+                case 3:
+                    width = (float)random.NextDouble() * 10;
+                    return new Cuboid(new Vector3(x, y, z), width);
+
+                case 4:
+                    width = (float)random.NextDouble() * 10;
+                    length = (float)random.NextDouble() * 10;
+                    height = (float)random.NextDouble() * 10;
+                    return new Cuboid(new Vector3(x, y, z), new Vector3(height, length, width));
+
+                case 5:
+                    radius = (float)random.NextDouble() * 10;
+                    return new Sphere(new Vector3(x, y, z), radius);
+
+                default: return null;
+            }            
         }
     }
 
@@ -75,14 +87,14 @@ namespace Geometric_Library
         {
             get
             {
-                return (radius * radius) * MathF.PI;
+                return radius * radius * MathF.PI;
             }
         }
         public override float Circumference
         {
             get
             {
-                return radius * (MathF.Pow(MathF.PI,2));
+                return radius * MathF.Pow(MathF.PI,2);
             }
         }
 
@@ -94,7 +106,7 @@ namespace Geometric_Library
 
         public override string ToString()
         {
-            return $"Circle ({center.X}, {center.Y}): r = {radius:N4}";
+            return $"Circle ({center.X:N2}, {center.Y:N2}): r = {radius:N4}";
         }
     }
 
@@ -130,14 +142,7 @@ namespace Geometric_Library
         {
             get 
             {
-                if (length == width)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (length == width);
             } 
         }
 
@@ -158,11 +163,11 @@ namespace Geometric_Library
         {
             if (IsSquare)
             {
-                return $"Square ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}";
+                return $"Square ({center.X:N2}, {center.Y:N2}), W = {width:N4}, L = {length:N4}";
             }
             else
             {
-                return $"Rectangle ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}";
+                return $"Rectangle ({center.X:N2}, {center.Y:N2}), W = {width:N4}, L = {length:N4}";
             }
         }
     }
@@ -214,7 +219,7 @@ namespace Geometric_Library
         {
             get
             {
-                return 2 * width + 2 * length + 2 * height;
+                return 2 * (length * width) + 2 * (height * length) + 2 * (width * height);
             }
         }
         public override float Volume
@@ -228,14 +233,7 @@ namespace Geometric_Library
         {
             get 
             {
-                if (length == height && length == width)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (length == height && length == width);                
             }
         }
 
@@ -259,11 +257,11 @@ namespace Geometric_Library
         {
             if (IsCube)
             {
-                return $"Cube ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}, H = {height:N4}";
+                return $"Cube ({center.X:N2}, {center.Y:N2}, {center.Z:N2}): W = {width:N4}, L = {length:N4}, H = {height:N4}";
             }
             else
             {
-                return $"Cuboid ({center.X}, {center.Y}), W = {width:N4}, L = {length:N4}, H = {height:N4}";
+                return $"Cuboid ({center.X:N2}, {center.Y:N2}, {center.Z:N2}): W = {width:N4}, L = {length:N4}, H = {height:N4}";
             }
         }
     }
@@ -302,7 +300,7 @@ namespace Geometric_Library
 
         public override string ToString()
         {
-            return $"Sphere ({center.X}, {center.Y}, {center.Z}): r = {radius:N4}";
+            return $"Sphere ({center.X:N2}, {center.Y:N2}, {center.Z:N2}): r = {radius:N4}";
         }
     }
 }
